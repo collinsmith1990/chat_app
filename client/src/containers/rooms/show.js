@@ -18,15 +18,20 @@ class Show extends Component {
 
       this.props.createSubscription(
         { channel: 'MessagesChannel', room_id: nextProps.room.id },
-        ADD_MESSAGE,
-        SET_ROOM_SUBSCRIPTION
+        SET_ROOM_SUBSCRIPTION,
+        (data, dispatch) => {
+          dispatch({
+            type: ADD_MESSAGE,
+            payload: data
+          });
+        }
       );
     }
   }
 
   render() {
     return (
-      <RoomsShow room={this.props.room} subscription={this.props.subscription} />
+      <RoomsShow {...this.props} />
     );
   }
 }

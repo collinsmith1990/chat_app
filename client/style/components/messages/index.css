@@ -1,0 +1,9 @@
+.messages-index {
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  background-color: #FFFFFF;
+}
+

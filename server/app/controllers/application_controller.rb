@@ -39,6 +39,6 @@ class ApplicationController < ActionController::API
   private
 
   def server_lag
-    sleep(3);
+    sleep(rand(3));
   end
 end

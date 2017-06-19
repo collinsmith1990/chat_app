@@ -6,7 +6,7 @@ import {
 
 export default function(state = {}, action) {
   switch(action.type) {
-    case SIGNIN_USER.SUCCESS:
+    case SIGNIN_USER.SUCCESS.type:
       return { 
         ...state,
         auth_token: action.payload.auth_token,

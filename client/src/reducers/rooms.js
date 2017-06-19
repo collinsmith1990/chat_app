@@ -28,10 +28,10 @@ export default function(state = initialState, action) {
           }
         }
       };
-    case FETCH_ROOMS.PENDING:
+    case FETCH_ROOMS.PENDING.type:
       return { ...state, loading: true };
-    case FETCH_ROOMS.SUCCESS:
-      return { ...state, all: [...state.all, ...action.payload], loading: false };
+    case FETCH_ROOMS.SUCCESS.type:
+      return { ...state, all: [...state.all, ...action.payload], current: action.payload[0], loading: false };
     case SET_ROOM_SUBSCRIPTION:
       return { ...state, subscription: action.payload };
     default:

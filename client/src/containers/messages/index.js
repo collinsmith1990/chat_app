@@ -16,7 +16,7 @@ class Index extends Component {
 
   render() {
     return (
-      <MessagesIndex {...this.props}/>
+      <MessagesIndex { ...this.props } />
     );
   }
 }

@@ -1,0 +1,7 @@
+@import url(./components/all.css);
+@import url(./themes/all.css);
+
+.app-root {
+  height: 100vh;
+  background-color: #f7f7f9;
+}

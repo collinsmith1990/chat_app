@@ -1,0 +1,26 @@
+.messages-show {
+  list-style: none;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #B3A9A9;
+}
+
+.messages-show:last-child {
+  list-style: none;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.messages-show.left .message-body {
+  margin-left: 60px;
+}
+
+.messages-show.right .message-body {
+  margin-right: 60px;
+}
+
+
+.messages-show .message-body p {
+  margin: 0;
+  color: #777777;
+}

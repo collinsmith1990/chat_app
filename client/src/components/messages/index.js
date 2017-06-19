@@ -14,7 +14,9 @@ class Index extends Component {
 
   scrollToBottom = () => {
     const node = ReactDOM.findDOMNode(this.messagesEnd);
-    node.scrollIntoView({ behavior: "instant" });
+    if (node) {
+      node.scrollIntoView({ behavior: "instant" });
+    }
   }
 
   renderMessages() {
@@ -28,13 +30,13 @@ class Index extends Component {
   render() {
     if (this.props.loading) {
       return (
-        <div className='chat messages-index'>
-          <LoadingIcon scale={'0.5'}/>
+        <div className='messages-index'>
+          <LoadingIcon scale={'0.75'}/>
         </div>
       );
     }
     return (
-      <ul className='chat messages-index'>
+      <ul className='messages-index'>
         {this.renderMessages()}
         <div style={{ float:"left", clear: "both" }}
              ref={(el) => { this.messagesEnd = el; }} />

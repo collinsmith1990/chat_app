@@ -3,13 +3,13 @@ import {
   REMOVE_SUBSCRIPTION 
 } from './types';
 
-export function createSubscription(identifier, received, subscription) {
+export function createSubscription(identifier, subscription, callback = {}) {
   return {
     type: CREATE_SUBSCRIPTION,
     payload: {
       identifier,
-      received,
-      subscription
+      subscription,
+      callback: callback
     }
   }
 }

@@ -16,10 +16,16 @@ import RoomsShow from './containers/rooms/show';
 import UsersNew from './components/users/new';
 import AuthsNew from './components/auths/new';
 import AuthsDestroy from './components/auths/destroy';
+import { clearFlash } from './actions/flash_messages';
 
 import requireAuth from './hocs/require_auth';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk, async, actionCableManager)(createStore);
+const createStoreWithMiddleware = applyMiddleware(
+  reduxThunk,
+  async,
+  actionCableManager
+)(createStore);
+
 const persistedState = loadState();
 const store = createStoreWithMiddleware(reducers, persistedState);
 const history = syncHistoryWithStore(browserHistory, store);
@@ -31,11 +37,16 @@ store.subscribe(() => {
   });
 })
 
+browserHistory.listen(() => {
+  console.log('hit');
+  store.dispatch(clearFlash());
+})
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path ='/' component={App}>
-        <IndexRoute component={HomeShow} />
+        <IndexRoute component={AuthsNew} />
         <Route path='rooms' component={requireAuth(RoomsShow)} />
         <Route path='signup' component={UsersNew} />
         <Route path='signin' component={AuthsNew} />

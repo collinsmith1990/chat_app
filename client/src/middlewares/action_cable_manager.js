@@ -15,10 +15,7 @@ export default function({ dispatch }){
 
         const sub = cable.subscriptions.create(action.payload.identifier, {
           received: (data) => {
-            dispatch({ 
-                type: action.payload.received,
-                payload: data 
-            });
+            action.payload.callback(data, dispatch);
           }
         });
 

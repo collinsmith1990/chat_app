@@ -6,29 +6,34 @@ import {
   CREATE_MESSAGE 
 } from './types';
 
+import { flash } from './flash_messages';
+
 
 export function createMessage(message, room) {
-  return function(dispatch) {
-    dispatch({
-      type: API,
-      payload: {
-        url: `rooms/${room.id}/messages`,
-        method: 'post',
-        body: message,
-        ...CREATE_MESSAGE
+  return ({
+    type: API,
+    payload: {
+      ...CREATE_MESSAGE,
+      url: `rooms/${room.id}/messages`,
+      method: 'post',
+      body: message,
+      SUCCESS: {
+        ...CREATE_MESSAGE.SUCCESS,
+        callback: (payload, dispatch) => {
+          dispatch(reset(FORM));
+        }
       }
-    });
-    dispatch(reset(FORM));
-  };
+    }
+  });
 }
 
 export function fetchMessages(room) {
   return {
     type: API,
     payload: {
+      ...FETCH_MESSAGES,
       url: `rooms/${room.id}/messages`,
-      method: 'get',
-      ...FETCH_MESSAGES
+      method: 'get'
     }
   }
 }

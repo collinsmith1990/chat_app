@@ -1,10 +1,20 @@
-const asyncActionType = (type) => ({
-  PENDING: `${type}_PENDING`,
-  SUCCESS: `${type}_SUCCESS`,
-  ERROR: `${type}_ERROR`,
+import { flash } from './flash_messages';
+
+const asyncActionType = (source_type) => ({
+  PENDING: { type: `${source_type}_PENDING`, callback: () => {} },
+  SUCCESS: { type: `${source_type}_SUCCESS`, callback: () => {} },
+  ERROR: {
+    type: `${source_type}_ERROR`,
+    callback: (data, dispatch) => {
+      dispatch(flash(data, "danger"));
+    } 
+  },
 });
 
 export const API = 'API';
+
+export const FLASH = 'FLASH';
+export const CLEAR_FLASH = 'CLEAR_FLASH';
 
 export const RESOLVE_REDIRECT = 'RESOLVE_REDIRECT';
 
